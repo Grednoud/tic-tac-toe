@@ -16,8 +16,8 @@ public class GameWindow extends JFrame{
 	
 	private final int WINDOW_WIDTH = 400;
 	private final int WINDOW_HEIGHT = 500;
-	private final int POS_X = 800;
-	private final int POS_Y = 300;
+	private final int POS_X = 500;
+	private final int POS_Y = 200;
 	
 	private final StartNewGameWindow start_new_game_window;
 	private final Map map;
@@ -55,6 +55,6 @@ public class GameWindow extends JFrame{
 		start_new_game_window.setVisible(true);
 	}
 	void startNewGameWindow (int mode, int fild_size_x, int fild_size_y, int win_len) {
-		map.stertNewGame(mode, fild_size_x, fild_size_y, win_len);
+		map.startNewGame(mode, fild_size_x, fild_size_y, win_len);
 	}
  }

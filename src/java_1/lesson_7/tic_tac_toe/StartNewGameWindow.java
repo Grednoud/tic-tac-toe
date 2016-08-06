@@ -21,9 +21,9 @@ public class StartNewGameWindow extends JFrame{
 	
 	private final int WINDOW_WIDTH = 300;
 	private final int WINDOW_HEIGHT = 250;
-	private final int MIN_WIN_LEN = 2;
+	private final int MIN_WIN_LEN = 3;
 	private final int MIN_FIELD_SIZE = 3;
-	private final int MAX_FIELD_SIZE = 10;
+	private final int MAX_FIELD_SIZE = 20;
 	
 	private final GameWindow game_window;
 	private JRadioButton rb_human_vs_ai;
@@ -58,15 +58,15 @@ public class StartNewGameWindow extends JFrame{
 		if (rb_human_vs_ai.isSelected()) game_mode = Map.GAME_MODE_HUMAN_VS_AI;
 		else if (rb_human_vs_human.isSelected()) game_mode = Map.GAME_MODE_HUMAN_VS_HUMAN;
 		else throw new RuntimeException("Неопределенный режим игры");
-		int fild_size = slider_field_size.getValue();
+		int field_size = slider_field_size.getValue();
 		setVisible(false);
-		game_window.startNewGameWindow(game_mode, fild_size, fild_size, slider_win_len.getValue());
+		game_window.startNewGameWindow(game_mode, field_size, field_size, slider_win_len.getValue());
 	}
 
 	private void addFieldAndWinLenControls() {
 		final String WIN_LEN_PREFIX = "Win len: ";
 		final JLabel label_win_len = new JLabel(WIN_LEN_PREFIX + MIN_WIN_LEN);
-		slider_win_len = new JSlider(MIN_FIELD_SIZE, MAX_FIELD_SIZE, MIN_FIELD_SIZE);
+		slider_win_len = new JSlider(MIN_WIN_LEN, MIN_FIELD_SIZE, MIN_WIN_LEN);
 		slider_win_len.addChangeListener(new ChangeListener(){
 			@Override
 			public void stateChanged(ChangeEvent e) {
