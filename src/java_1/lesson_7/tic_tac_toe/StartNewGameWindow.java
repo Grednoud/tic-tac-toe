@@ -1,6 +1,7 @@
 package java_1.lesson_7.tic_tac_toe;
 
 import java_1.lesson_7.tic_tac_toe.GameWindow;
+import java_1.lesson_7.tic_tac_toe.Map;
 
 import java.awt.GridLayout;
 import java.awt.Rectangle;
@@ -8,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -41,6 +43,24 @@ public class StartNewGameWindow extends JFrame{
 		setLayout(new GridLayout(10, 1));
 		addGameModControls();
 		addFieldAndWinLenControls();
+		JButton btn_start_game = new JButton("Начать");
+		btn_start_game.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				onPressButtonStart();
+			}
+		});
+		add(btn_start_game);
+	}
+	
+	private void onPressButtonStart() {
+		int game_mode;
+		if (rb_human_vs_ai.isSelected()) game_mode = Map.GAME_MODE_HUMAN_VS_AI;
+		else if (rb_human_vs_human.isSelected()) game_mode = Map.GAME_MODE_HUMAN_VS_HUMAN;
+		else throw new RuntimeException("Неопределенный режим игры");
+		int fild_size = slider_field_size.getValue();
+		setVisible(false);
+		game_window.startNewGameWindow(game_mode, fild_size, fild_size, slider_win_len.getValue());
 	}
 
 	private void addFieldAndWinLenControls() {
@@ -55,7 +75,22 @@ public class StartNewGameWindow extends JFrame{
 		});
 		
 		final String FIELD_SIZE_PREFIX = "Field size: ";
-		
+		final JLabel label_field_size = new JLabel(FIELD_SIZE_PREFIX + MIN_FIELD_SIZE);
+		slider_field_size = new JSlider(MIN_FIELD_SIZE, MAX_FIELD_SIZE, MIN_FIELD_SIZE);
+		slider_field_size.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				int i = slider_field_size.getValue();
+				label_field_size.setText(FIELD_SIZE_PREFIX + i);
+				slider_win_len.setMaximum(i);
+			}
+		});
+		add(new JLabel("Выберете размер поля:"));
+		add(label_field_size);
+		add(slider_field_size);
+		add(new JLabel("Установите длинну победной последовательности: "));
+		add(label_win_len);
+		add(slider_win_len);		
 	}
 
 	private void addGameModControls() {
