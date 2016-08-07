@@ -20,16 +20,16 @@ public class Map extends JPanel {
 	
 	private static final int EMPTY_DOT = 0;
 	private static final int HUMAN_DOT = 1;
-	private static final int AI_DOT = 2;
+	private static final int PLAYER_2_DOT = 2;
 	
 	private static final int DRAW = 0;
 	private static final int HUMAN_WIN = 1;
 	private static final int AI_WIN = 2;
-	
-	private static final int CELL_MARGIN = 4;
+	private static final int HUMAN_2_WIN = 3;
 	
 	private static final String DRAW_MSG = "Ничья!";
 	private static final String HUMAN_WIN_MSG = "Победил игрок!";
+	private static final String HUMAN_2_WIN_MSG = "Победил второй игрок!";
 	private static final String AI_WIN_MSG = "Победил компьютер!";
 	
 	private static final Random rnd = new Random();
@@ -77,9 +77,18 @@ public class Map extends JPanel {
 			game_over = true;
 			return;
 		}
-		aiTurn();
-		repaint();
-		if (checkWin(AI_DOT)) {
+		switch (game_mode) {
+		case GAME_MODE_HUMAN_VS_AI:
+			aiTurn();
+			repaint();
+			break;
+		case GAME_MODE_HUMAN_VS_HUMAN:
+			
+			break;
+		default:
+			throw new RuntimeException("Неизвестный режим игры " + game_mode);
+		}
+		if (checkWin(PLAYER_2_DOT)) {
 			game_over_state = AI_WIN;
 			game_over = true;
 			return;
@@ -88,7 +97,7 @@ public class Map extends JPanel {
 			game_over_state = DRAW;
 			game_over = true;
 		}
-		
+			
 	}
 	
 	@Override
@@ -124,7 +133,7 @@ public class Map extends JPanel {
 					g.drawImage(img_human_dot, j * cell_width, i * cell_height, 
 							cell_width, cell_height, this);
 				}
-				else if (field[i][j] == AI_DOT) {
+				else if (field[i][j] == PLAYER_2_DOT) {
 					g.drawImage(img_ai_dot, j * cell_width, i * cell_height, 
 							cell_width, cell_height, this);
 				}
@@ -149,6 +158,8 @@ public class Map extends JPanel {
 		case AI_WIN:
 			g.drawString(AI_WIN_MSG, 40, getHeight()/2);
 			break;
+		case HUMAN_2_WIN:
+			g.drawString(HUMAN_2_WIN_MSG, 10, getHeight()/2);
 		default:
 			throw new RuntimeException("Неизвестный game_over_state = " + game_over_state);
 		}
@@ -162,15 +173,15 @@ public class Map extends JPanel {
             x = rnd.nextInt(field_size_x);
             y = rnd.nextInt(field_size_y);
         } while (!isEmptyCell(x, y));
-        field[y][x] = AI_DOT;
+        field[y][x] = PLAYER_2_DOT;
     }
 
     private boolean detectAIWinCell(){
         for (int i = 0; i < field_size_y; i++) {
             for (int j = 0; j < field_size_x; j++) {
                 if(isEmptyCell(j, i)) {
-                    field[i][j] = AI_DOT;
-                    if (checkWin(AI_DOT)) return true;
+                    field[i][j] = PLAYER_2_DOT;
+                    if (checkWin(PLAYER_2_DOT)) return true;
                     field[i][j] = EMPTY_DOT;
                 }
             }
@@ -184,7 +195,7 @@ public class Map extends JPanel {
                 if(isEmptyCell(j, i)) {
                     field[i][j] = HUMAN_DOT;
                     if (checkWin(HUMAN_DOT)) {
-                        field[i][j] = AI_DOT;
+                        field[i][j] = PLAYER_2_DOT;
                         return true;
                     }
                     field[i][j] = EMPTY_DOT;
