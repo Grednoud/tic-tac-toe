@@ -10,14 +10,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class StartNewGameWindow extends JFrame{
+public class StartNewGameWindow extends JDialog{
 	
 	private final int WINDOW_WIDTH = 300;
 	private final int WINDOW_HEIGHT = 250;

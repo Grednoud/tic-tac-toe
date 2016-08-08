@@ -35,8 +35,8 @@ public class Map extends JPanel {
 	private static final Random rnd = new Random();
 	private static final Font font = new Font("Times new roman", Font.BOLD, 32);
 	
-	private BufferedImage img_human_dot;
-	private BufferedImage img_ai_dot;
+	private final BufferedImage img_human_dot;
+	private final BufferedImage img_ai_dot;
 	
 	private boolean initialized;
 	private boolean game_over;
@@ -51,6 +51,12 @@ public class Map extends JPanel {
 	private int[][] field;
 	
 	Map() {
+		try {
+		img_human_dot = ImageIO.read(new File("src\\images\\x.bmp"));
+		img_ai_dot = ImageIO.read(new File("src\\images\\o.bmp"));
+		} catch (IOException ex) {
+			throw new RuntimeException (ex);
+		}
 		setBackground(Color.WHITE);
 		addMouseListener(new MouseAdapter() {
 			@Override
@@ -106,12 +112,6 @@ public class Map extends JPanel {
 	}
 	
 	private void render(Graphics g) {
-		try {
-		img_human_dot = ImageIO.read(new File("src\\images\\x.bmp"));
-		img_ai_dot = ImageIO.read(new File("src\\images\\o.bmp"));
-		} catch (IOException ex) {
-			throw new RuntimeException ("Не удалось открыть файл");
-		}
 		if (!initialized) return;
 		int panel_width = getWidth();
 		int panel_height = getHeight();
@@ -158,7 +158,7 @@ public class Map extends JPanel {
 			g.drawString(AI_WIN_MSG, 40, getHeight()/2);
 			break;
 		case HUMAN_2_WIN:
-			g.drawString(HUMAN_2_WIN_MSG, 90, getHeight()/2);
+			g.drawString(HUMAN_2_WIN_MSG, 90	, getHeight()/2);
 			break;
 		default:
 			throw new RuntimeException("Неизвестный game_over_state = " + game_over_state);
@@ -252,4 +252,5 @@ public class Map extends JPanel {
 		player_1_turn = true;
 		repaint();
 	}
+	
 }

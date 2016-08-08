@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-public class GameWindow extends JFrame{
+public class GameWindow extends JFrame {
 	
 	private final int WINDOW_WIDTH = 400;
 	private final int WINDOW_HEIGHT = 500;
@@ -57,4 +57,5 @@ public class GameWindow extends JFrame{
 	void startNewGameWindow (int mode, int fild_size_x, int fild_size_y, int win_len) {
 		map.startNewGame(mode, fild_size_x, fild_size_y, win_len);
 	}
+	
  }
