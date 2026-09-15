@@ -1,0 +1,273 @@
+/*
+ * Стили для приложения Крестики-нолики
+ * Modern dark theme with accent colors
+ */
+
+/* === Root & Colors === */
+.root {
+    -fx-font-family: "Segoe UI", "SF Pro Display", "Helvetica Neue", sans-serif;
+    -fx-font-size: 14px;
+    
+    /* Color palette */
+    -fx-primary: #6366f1;
+    -fx-primary-hover: #818cf8;
+    -fx-primary-dark: #4f46e5;
+    
+    -fx-background: #1e1e2e;
+    -fx-surface: #2a2a3e;
+    -fx-surface-light: #363652;
+    
+    -fx-text-primary: #e2e8f0;
+    -fx-text-secondary: #94a3b8;
+    -fx-text-muted: #64748b;
+    
+    -fx-x-color: #f472b6;
+    -fx-o-color: #34d399;
+    
+    -fx-win-color: #fbbf24;
+    -fx-draw-color: #94a3b8;
+    
+    -fx-danger: #ef4444;
+    -fx-danger-hover: #f87171;
+}
+
+/* === Main View === */
+.main-view {
+    -fx-background-color: -fx-background;
+}
+
+/* === Title === */
+.title-label {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-text-primary;
+}
+
+.mode-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: -fx-text-secondary;
+}
+
+/* === Game Board === */
+.game-board {
+    -fx-background-color: -fx-surface;
+    -fx-background-radius: 16px;
+    -fx-padding: 16px;
+}
+
+.cell {
+    -fx-background-color: -fx-surface-light;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 2);
+}
+
+.cell:hover:not(.cell-filled) {
+    -fx-background-color: #404060;
+}
+
+.cell-hover:not(.cell-filled) {
+    -fx-background-color: #404060;
+}
+
+.cell-filled {
+    -fx-cursor: default;
+}
+
+.cell-x {
+    -fx-background-color: linear-gradient(to bottom right, #4a1942, #2a2a3e);
+}
+
+.cell-o {
+    -fx-background-color: linear-gradient(to bottom right, #1a3a2e, #2a2a3e);
+}
+
+.cell-label {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-text-primary;
+}
+
+.cell-x .cell-label {
+    -fx-text-fill: -fx-x-color;
+}
+
+.cell-o .cell-label {
+    -fx-text-fill: -fx-o-color;
+}
+
+/* === Status Bar === */
+.status-bar {
+    -fx-background-color: -fx-surface;
+    -fx-background-radius: 8px 8px 0 0;
+}
+
+.status-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-text-primary;
+}
+
+.status-win {
+    -fx-text-fill: -fx-win-color;
+}
+
+.status-draw {
+    -fx-text-fill: -fx-draw-color;
+}
+
+/* === Buttons === */
+.action-button {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 24px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.action-button:hover {
+    -fx-background-color: -fx-primary-hover;
+}
+
+.action-button:pressed {
+    -fx-background-color: -fx-primary-dark;
+}
+
+.exit-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-secondary;
+    -fx-border-color: -fx-text-muted;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+}
+
+.exit-button:hover {
+    -fx-background-color: rgba(239, 68, 68, 0.1);
+    -fx-text-fill: -fx-danger;
+    -fx-border-color: -fx-danger;
+}
+
+/* === Dialog === */
+.dialog-pane {
+    -fx-background-color: -fx-background;
+}
+
+.dialog-pane > .content {
+    -fx-background-color: -fx-background;
+}
+
+.dialog-pane > .button-bar > .container {
+    -fx-background-color: -fx-surface;
+    -fx-padding: 16px;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: -fx-surface;
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: -fx-text-primary;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.new-game-dialog {
+    -fx-background-color: -fx-background;
+}
+
+.dialog-section-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-text-primary;
+}
+
+.slider-value-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-primary;
+    -fx-min-width: 50px;
+}
+
+/* === Radio Buttons === */
+.radio-button {
+    -fx-text-fill: -fx-text-secondary;
+}
+
+.radio-button:selected {
+    -fx-text-fill: -fx-text-primary;
+}
+
+.radio-button .radio {
+    -fx-background-color: -fx-surface-light;
+    -fx-border-color: -fx-text-muted;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+}
+
+.radio-button:selected .radio {
+    -fx-border-color: -fx-primary;
+}
+
+.radio-button:selected .dot {
+    -fx-background-color: -fx-primary;
+}
+
+/* === Sliders === */
+.slider .track {
+    -fx-background-color: -fx-surface-light;
+    -fx-background-radius: 4px;
+}
+
+.slider .thumb {
+    -fx-background-color: -fx-primary;
+    -fx-background-radius: 50%;
+}
+
+.slider .thumb:hover {
+    -fx-background-color: -fx-primary-hover;
+}
+
+.slider .axis .tick-label {
+    -fx-text-fill: -fx-text-muted;
+    -fx-font-size: 11px;
+}
+
+/* === Scroll Pane (for larger boards) === */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* === Button in dialogs === */
+.button {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 20px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: -fx-primary-hover;
+}
+
+.button:default {
+    -fx-background-color: -fx-primary;
+}
+
+.button:cancel {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-secondary;
+    -fx-border-color: -fx-text-muted;
+    -fx-border-radius: 6px;
+}
+
+.button:cancel:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
